@@ -20,22 +20,6 @@ const { NotImplementedError } = require('../extensions/index.js');
 function repeater(str, options) {
   let result = '';
 
-  if (str === 9.234) {
-    return '9.234[object Object]&&[object Object]&&[object Object]||9.234[object Object]&&[object Object]&&[object Object]||9.234[object Object]&&[object Object]&&[object Object]||9.234[object Object]&&[object Object]&&[object Object]';
-  }
-  if (str === -222) {
-    return '-222[object Map]&&[object Map]&&[object Map]||-222[object Map]&&[object Map]&&[object Map]||-222[object Map]&&[object Map]&&[object Map]||-222[object Map]&&[object Map]&&[object Map]';
-  }
-  if (str === true) {
-    return 'truefalse!!!false??? truefalse!!!false??? truefalse!!!false';
-  }
-  if (str === null) {
-    return 'nullnull!!!null!!!null??? nullnull!!!null!!!null??? nullnull!!!null!!!null';
-  }
-  if (typeof options.addition === 'object' && options.addition[3] === '4' ) {
-    return '[object Set]1,2,3,4!!!1,2,3,4??? [object Set]1,2,3,4!!!1,2,3,4??? [object Set]1,2,3,4!!!1,2,3,4';
-  }
-
   if (!options.repeatTimes) {
     options.repeatTimes = 1;
   }
@@ -48,9 +32,6 @@ function repeater(str, options) {
   }
 
   if (typeof str !== 'string') {
-    if (typeof str === 'object') {
-      return 'STRING_OR_DEFAULTSTRING_OR_DEFAULT+STRING_OR_DEFAULTSTRING_OR_DEFAULT';
-    }
     str = toString(str);
   }
   if (typeof options.addition !== 'string') {
