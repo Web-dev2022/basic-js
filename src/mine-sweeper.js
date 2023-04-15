@@ -23,9 +23,58 @@ const { NotImplementedError } = require('../extensions/index.js');
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+
+ const matrix = [
+  [true, false, false],
+  [false, true, false],
+  [false, false, false]
+ ];
+
+function minesweeper(matrix) {
+  let result = [];
+
+  for (let i = 0; i < matrix.length; i++) {
+    result.push([]);
+
+    for (let k = 0; k < matrix[i].length; k++) {
+      let sum = 0;
+
+      if (matrix[i - 1]) {                                   // top
+        sum += (matrix[i - 1][k] === true) ? 1 : 0;
+      }
+      if (matrix[i + 1]) {                                   // bottom
+        sum += (matrix[i + 1][k] === true) ? 1 : 0;
+      }
+      if (matrix[i][k - 1]) {                                // left
+        sum += (matrix[i][k - 1] === true) ? 1 : 0;
+      }
+      if (matrix[i][k + 1]) {                                // right
+        sum += (matrix[i][k + 1] === true) ? 1 : 0;
+      }
+      
+      if (matrix[i - 1]) {                                   // top-left
+        if (matrix[i - 1][k - 1]) {
+          sum += (matrix[i - 1][k - 1] === true) ? 1 : 0;
+        }
+        if (matrix[i - 1][k + 1]) {                          // top-right
+          sum += (matrix[i - 1][k + 1] === true) ? 1 : 0;
+        }
+      }     
+      if (matrix[i + 1]) {                                   // bottom-left 
+        if (matrix[i + 1][k - 1]) {
+          sum += (matrix[i + 1][k - 1] === true) ? 1 : 0;
+        }
+        if (matrix[i + 1][k + 1]) {                          // bottom-right
+          sum += (matrix[i + 1][k + 1] === true) ? 1 : 0;
+        }
+      }   
+
+      
+      result[i].push(sum);
+    }
+  }
+
+  return result;
 }
 
 module.exports = {
